@@ -1,0 +1,207 @@
+version: '3'
+
+networks:
+  dex-manage:
+    driver:
+      bridge
+
+
+services:
+
+  # haproxy-master:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./haproxys/Dockerfile
+  #   environment:
+  #     - SERVER_NAME=haproxy-server
+  #   ports:
+  #     - 5670:5670
+  #     - 35672:35672
+  #     - 35674:35674
+  #     - 9999:9999
+  #   networks:
+  #     - dex-manage
+
+  # rabbitmq-main:
+  #   hostname: rabbit-master
+  #   build:
+  #     context: ./
+  #     dockerfile: rabbit-master/Dockerfile
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=dream 
+  #     - RABBITMQ_DEFAULT_PASS=231510622abc
+  #     - PATH=$PATH:/opt/rabbitmq/sbin
+  #   networks:
+  #     - dex-manage
+
+  # rabbitmq-client1:
+  #   hostname: rabbit-node1
+  #   build:
+  #     context: ./
+  #     dockerfile: rabbit-node/Dockerfile
+  #   environment:
+  #     - PATH=$PATH:/opt/rabbitmq/sbin
+  #   networks:
+  #     - dex-manage
+
+  # rabbitmq-client2:
+  #   hostname: rabbit-node2
+  #   build:
+  #     context: ./
+  #     dockerfile: rabbit-node/Dockerfile
+  #   environment:
+  #     - PATH=$PATH:/opt/rabbitmq/sbin
+  #   networks:
+  #     - dex-manage
+
+  # rabbitmq-client3:
+  #   hostname: rabbit-node3
+  #   build:
+  #     context: ./
+  #     dockerfile: rabbit-node/Dockerfile
+  #   environment:
+  #     - PATH=$PATH:/opt/rabbitmq/sbin
+  #   ports:
+  #     - 15632:15672
+  #     - 5632:5672
+  #     - 15634:15674
+  #   networks:
+  #     - dex-manage
+
+  # rabbitmq-client4:
+  #   hostname: rabbit-node4
+  #   build:
+  #     context: ./
+  #     dockerfile: rabbit-node/Dockerfile
+  #   environment:
+  #     - PATH=$PATH:/opt/rabbitmq/sbin
+  #   ports:
+  #     - 15642:15672
+  #     - 5642:5672
+  #     - 15644:15674
+  #   networks:
+  #     - dex-manage
+
+
+  dex-node:
+    build:
+      context: ./
+      dockerfile: node-server/dockerfile
+    ports:
+      - 8080:80
+      - 8989:8989
+    volumes:
+      - ./build:/opt/build
+    networks:
+      - dex-manage
+
+  # local-python:
+  #   build:
+  #     context: ./
+  #     dockerfile: python/Dockerfile
+  #   ports:
+  #     - 9090:9090
+  #   environment:
+  #     - RABBITMQ_PROTOCOL=amqp
+  #     - RABBITMQ_HOSTNAME=172.26.32.161
+  #     - RABBITMQ_PORT=5670
+  #     - RABBITMQ_USERNAME=information
+  #     - RABBITMQ_PASSWORD=information
+  #     - RABBITMQ_LOCALE=en_US
+  #     - RABBITMQ_FRAMEMAX=0
+  #     - RABBITMQ_HOST=/
+
+  #     - MYSQL_HOST=172.26.32.161
+  #     - MYSQL_USER=root
+  #     - MYSQL_PORT=3300
+  #     - MYSQL_PASSWORD=231510622abc
+  #     - MYSQL_DATABASE=split_db
+  #     - MYSQL_CHARSET=utf8mb4
+
+  #     - GETH_CLIENT=http://172.26.32.161:8545
+
+  #     - BSC_INIT_TIMESTEMP=1599183796
+  #     - BSC_BUSD=0xe9e7cea3dedca5984780bafc599bd69add087d56
+  #     - BSC_USDT=0x55d398326f99059ff775485246999027b3197955
+  #     - TZ=Asia/Shanghai
+  #   volumes:
+  #     - ../Api:/home/Api
+  #   networks:
+  #     - dex-manage
+
+
+  # binance-node:
+  #   build:
+  #     context: ./
+  #     dockerfile: bsc/Dockerfile
+  #   ports:
+  #     - 8545:8545
+  #     - 8546:8546
+  #   volumes:
+  #     -  ./bsc/node:/opt/bsc/build/bin/node
+  #   networks:
+  #     - dex-manage
+
+  # dex-mysql:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./mysql/Dockerfile
+  #   environment:
+  #     - ROOT_DATA_DIR=/var/lib/mysql
+  #     - MYSQL_ROOT_PASSWORD=231510622abc
+  #   ports:
+  #     - 3300:3306
+  #   volumes:
+  #     - ./mysql/datadir:/var/lib/mysql
+  #     - ./mysql/conf:/etc/mysql/conf.d
+  #   command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+  #   networks:
+  #     - dex-manage
+
+  # dex-phpmyadmin:
+  #   image: phpmyadmin
+  #   environment:
+  #     - PMA_ARBITRARY=1
+  #     - PMA_HOST=dex-mysql
+  #   ports:
+  #     - 8888:80
+  #   networks:
+  #     - dex-manage
+
+  # dex-rabbitmq:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./rabbitmq/Dockerfile
+  #   ports:
+  #     - 5670:5670
+  #     - 35674:35674
+  #     - 35672:35672
+  #   networks:
+  #     - dex-manage
+
+
+  # local-redis:
+  #   build:
+  #     context: ./
+  #     dockerfile: redis/Dockerfile
+  #   ports:
+  #     - 6379:6379
+  #   environment:
+  #     - ROOT_PASSWORD=231510622abc
+  #   networks:
+  #     - dex-manage
+
+
+
+  # local-ethereum:
+  #   image: ethereum/client-go
+  #   ports:
+  #     - 18545:8545
+  #     - 18546:8546
+  #     - 30303:30303
+  #   environment:
+  #     - LOCAL_ADDR=0x868b6e148625bfF42aC9Fbc4e2F20847c8Ea5C89
+  #   command: --dev --http.corsdomain="*" --datadir=/root --http --http.addr="0.0.0.0" --http.port=8545 --ws --ws.addr="0.0.0.0" --ws.port=8546 --port=30303
+  #   #command: --dev --rpc --rpcaddr 0.0.0.0 --wsorigins * --rpccorsdomain * --nodiscover --debug --networkid 1337 --ws --wsaddr 0.0.0.0 --wsport 8546 --wsapi eth,netweb3 --rpcapi eth,net,web3,personal --rpcport 8545 --port 30303
+  #   networks:
+  #     - dex-manage
