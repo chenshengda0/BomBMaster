@@ -4,7 +4,10 @@ version: '3'
 #   dex-manage:
 #     driver:
 #       bridge
-
+networks:
+  dex-manage:
+    name: host
+    external: true
 
 services:
 
@@ -87,7 +90,6 @@ services:
     build:
       context: ./
       dockerfile: node-server/dockerfile
-    network_mode: "host"
     volumes:
       - ./build:/opt/build
     networks:
