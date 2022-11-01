@@ -12,6 +12,11 @@ for (( i = 0; i < 60; i=(i+step) )); do
     curl http://127.0.0.1:9090/consumer/set_pairs_by_id
     curl http://127.0.0.1:9090/consumer/set_pairs_by_id
     curl http://127.0.0.1:9090/consumer/set_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_pairs_by_id
 
     #消费获取V2交易对事件
     curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
@@ -19,8 +24,58 @@ for (( i = 0; i < 60; i=(i+step) )); do
     curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
     curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
     curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
+    curl http://127.0.0.1:9090/consumer/set_v2_pairs_by_id
 
     #设置交易
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
+    curl http://127.0.0.1:9090/consumer/set_transaction_event
     curl http://127.0.0.1:9090/consumer/set_transaction_event
     curl http://127.0.0.1:9090/consumer/set_transaction_event
     curl http://127.0.0.1:9090/consumer/set_transaction_event
