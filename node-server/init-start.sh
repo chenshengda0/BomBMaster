@@ -9,8 +9,8 @@ sed -i "$ a source /etc/environment" ~/.bashrc
 echo "* * * * * date >> /opt/build/test.md 2>&1" >> ~/init-crontab
 echo "* * * * * /opt/one_consumer.sh >> /opt/build/test.md 2>&1" >> ~/init-crontab
 echo "* * * * * /opt/three_publish.sh >> /opt/build/test.md 2>&1" >> ~/init-crontab
-echo "* * * * * /opt/RestartApi.sh >> /opt/build/test.md 2>&1" >> ~/init-crontab
-echo "* * * * * /opt/RestartCrontab.sh >> /opt/build/test.md 2>&1" >> ~/init-crontab
+echo "0 0 * * * /opt/RestartApi.sh >> /opt/build/test.md 2>&1" >> ~/init-crontab
+echo "*/5 * * * * /opt/RestartCrontab.sh >> /opt/build/test.md 2>&1" >> ~/init-crontab
 crontab ~/init-crontab
 rm -rf ~/init-crontab
 service cron restart
