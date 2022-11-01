@@ -1,9 +1,10 @@
 version: '3'
 
-# networks:
-#   dex-manage:
-#     driver:
-#       bridge
+networks:
+  dex-manage:
+    driver:
+      bridge
+
 
 services:
 
@@ -86,9 +87,13 @@ services:
     build:
       context: ./
       dockerfile: node-server/dockerfile
-    network_mode: "host" 
+    ports:
+      - 80:80
+      - 8989:8989
     volumes:
       - ./build:/opt/build
+    networks:
+      - dex-manage
 
   # local-python:
   #   build:
