@@ -16,7 +16,7 @@ for (( i = 0; i < 60; i=(i+step) )); do
     #发送获取交易数据消息
     curl http://127.0.0.1:9090/publish/send_trans_events
 
-    curl http://127.0.0.1:9090/publish/send_new_trans_events
+    #curl http://127.0.0.1:9090/publish/send_new_trans_events
 } &
     sleep $step
 done
