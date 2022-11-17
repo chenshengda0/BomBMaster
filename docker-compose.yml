@@ -158,6 +158,58 @@ services:
     networks:
       - dex-manage
 
+  dex-node-consumer-node-one:
+    build:
+      context: ./
+      dockerfile: node-server-consumer-node-one/dockerfile
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-haproxy
+    networks:
+      - dex-manage
+
+  dex-node-consumer-node-two:
+    build:
+      context: ./
+      dockerfile: node-server-consumer-node-two/dockerfile
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-haproxy
+    networks:
+      - dex-manage
+
+  dex-node-consumer-node-three:
+    build:
+      context: ./
+      dockerfile: node-server-consumer-node-three/dockerfile
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-haproxy
+    networks:
+      - dex-manage
+
+  dex-node-consumer-node-four:
+    build:
+      context: ./
+      dockerfile: node-server-consumer-node-four/dockerfile
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-haproxy
+    networks:
+      - dex-manage
+
   # local-python:
   #   build:
   #     context: ./
