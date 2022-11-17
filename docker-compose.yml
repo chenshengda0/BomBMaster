@@ -119,7 +119,7 @@ services:
   dex-node-publish:
     build:
       context: ./
-      dockerfile: dex-node-publish/dockerfile
+      dockerfile: node-server-publish/dockerfile
     ports:
       - 9090:9090
     volumes:
