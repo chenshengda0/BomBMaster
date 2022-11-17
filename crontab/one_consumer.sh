@@ -19,7 +19,7 @@ for (( i = 0; i < 60; i=(i+step) )); do
 
     #设置移除流动池
     curl http://127.0.0.1:9090/consumer/set_transaction_remove_liquidity_event
-}
+} &
     sleep $step
 
 done
