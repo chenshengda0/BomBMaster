@@ -144,6 +144,20 @@ services:
     networks:
       - dex-manage
 
+
+  dex-node-consumer-node-zero:
+    build:
+      context: ./
+      dockerfile: node-server-consumer-node-zero/dockerfile
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-haproxy
+    networks:
+      - dex-manage
+
   # local-python:
   #   build:
   #     context: ./
