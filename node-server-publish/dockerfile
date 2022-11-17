@@ -1,0 +1,16 @@
+FROM node:16.15
+RUN apt -y update && apt -y upgrade && apt install -y man vim iproute2 xz-utils wget gcc git g++ sudo  inetutils-ping net-tools curl screen cron
+WORKDIR /opt/build
+COPY ./node-server-publish/init-start.sh /opt/init-start.sh
+COPY ./node-server-publish/one_consumer.sh /opt/one_consumer.sh
+COPY ./node-server-publish/three_publish.sh /opt/three_publish.sh
+COPY ./node-server-publish/RestartApi.sh /opt/RestartApi.sh
+COPY ./node-server-publish/RestartCrontab.sh /opt/RestartCrontab.sh
+RUN sed -i -e "s/\r//" /opt/init-start.sh
+RUN sed -i -e "s/\r//" /opt/one_consumer.sh
+RUN sed -i -e "s/\r//" /opt/three_publish.sh
+RUN sed -i -e "s/\r//" /opt/RestartApi.sh
+RUN sed -i -e "s/\r//" /opt/RestartCrontab.sh
+RUN chmod -R 777 /opt/init-start.sh && chmod -R 777 /opt/one_consumer.sh && chmod -R 777 /opt/three_publish.sh && chmod -R 777 /opt/RestartApi.sh && chmod -R 777 /opt/RestartCrontab.sh
+EXPOSE 9090
+CMD date >> /home/test.md && /opt/init-start.sh && while true;do sleep 3000;done

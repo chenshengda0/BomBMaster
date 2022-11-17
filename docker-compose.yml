@@ -101,12 +101,40 @@ services:
     networks:
       - dex-manage
 
-  dex-node:
+  dex-node-api:
     build:
       context: ./
-      dockerfile: node-server/dockerfile
+      dockerfile: node-server-api/dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-haproxy
+    networks:
+      - dex-manage
+
+  dex-node-publish:
+    build:
+      context: ./
+      dockerfile: dex-node-publish/dockerfile
     ports:
       - 9090:9090
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-haproxy
+    networks:
+      - dex-manage
+
+  dex-node-consumer:
+    build:
+      context: ./
+      dockerfile: node-server-consumer/dockerfile
     volumes:
       - ./build:/opt/build
     extra_hosts:
