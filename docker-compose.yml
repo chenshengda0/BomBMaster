@@ -106,12 +106,13 @@ services:
       context: ./
       dockerfile: node-server/dockerfile
     ports:
-      - 80:80
-      - 8989:8989
+      - 9090:9090
     volumes:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
+    depends_on:
+      - dev-haproxy
     networks:
       - dex-manage
 
