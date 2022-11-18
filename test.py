@@ -114,7 +114,7 @@ if __name__ == "__main__":
                 ##print("success")
                 ##for index,item in np.ndenumerate(setData):
                     #print( "{} ---- {}".format(index,item) )
-                print( 'values：{};'.format( len(setData) ) )
+                print( 'values:{};'.format( len(setData) ) )
     except Exception as e:
         print( e )
         traceback.format_exc()
