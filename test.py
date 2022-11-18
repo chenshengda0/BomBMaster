@@ -111,13 +111,13 @@ if __name__ == "__main__":
                         "symbolAbi": '{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}',
                         "decimalsAbi": '{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"}'
                     }) )
-                ##print("发送消息成功")
+                ##print("success")
                 ##for index,item in np.ndenumerate(setData):
                     #print( "{} ---- {}".format(index,item) )
-                print( '缺失值数量为：{};'.format( len(setData) ) )
+                print( 'values：{};'.format( len(setData) ) )
     except Exception as e:
         print( e )
         traceback.format_exc()
     finally:
-        print( "rabbitmq测试" )
+        print( "rabbitmq test" )
 '''
