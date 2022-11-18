@@ -34,14 +34,12 @@ class WithMysql:
         return self.__cursor
 
     def __exit__(self,type,value,trace):
-        #处理事务
         if type is None:
             print("commit...")
             self.__db.commit()
         else:
             print("rollback...")
             self.__db.rollback()
-        #关闭连接
         print("close...")
         self.__cursor.close()
         self.__db.close()
@@ -59,13 +57,11 @@ class WithRabbitmq:
         certificate = pika.PlainCredentials(username = self.__user, password = self.__passwd, erase_on_connect = False)
         connectionParam = pika.ConnectionParameters(host = self.__host,port = self.__port,virtual_host = self.__vhost,credentials=certificate)
         self.__connection = pika.BlockingConnection(connectionParam)
-        #信道
         self.__channel = self.__connection.channel()
         print("connect success...")
         return self.__channel
 
     def __exit__(self,type,value,trace):
-        #关闭连接
         print("close...")
         self.__channel.close()
         self.__connection.close()
@@ -86,7 +82,7 @@ if __name__ == "__main__":
         print( e )
         traceback.format_exc()
     finally:
-        print( "mysql测试" )
+        print( "mysql test" )
 '''
         with WithRabbitmq() as rabbit:
             with WithMysql() as cur:
