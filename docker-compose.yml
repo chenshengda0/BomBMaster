@@ -98,6 +98,7 @@ services:
       - 9999:9999
     extra_hosts:
       - host.docker.internal:host-gateway
+    restart: always
     networks:
       - dex-manage
 
@@ -111,8 +112,7 @@ services:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
-    depends_on:
-      - dev-haproxy
+    restart: always
     networks:
       - dex-manage
 
@@ -126,8 +126,7 @@ services:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
-    depends_on:
-      - dev-haproxy
+    restart: always
     networks:
       - dex-manage
 
@@ -139,8 +138,7 @@ services:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
-    depends_on:
-      - dev-haproxy
+    restart: always
     networks:
       - dex-manage
 
@@ -153,8 +151,7 @@ services:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
-    depends_on:
-      - dev-haproxy
+    restart: always
     networks:
       - dex-manage
 
@@ -166,8 +163,7 @@ services:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
-    depends_on:
-      - dev-haproxy
+    restart: always
     networks:
       - dex-manage
 
@@ -179,8 +175,7 @@ services:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
-    depends_on:
-      - dev-haproxy
+    restart: always
     networks:
       - dex-manage
 
@@ -192,8 +187,7 @@ services:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
-    depends_on:
-      - dev-haproxy
+    restart: always
     networks:
       - dex-manage
 
@@ -205,8 +199,7 @@ services:
       - ./build:/opt/build
     extra_hosts:
       - host.docker.internal:host-gateway
-    depends_on:
-      - dev-haproxy
+    restart: always
     networks:
       - dex-manage
 
