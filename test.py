@@ -3,6 +3,7 @@ import pika
 import numpy as np
 import mysql.connector
 import traceback
+import json
 
 class WithMysql:
 
@@ -68,16 +69,29 @@ class WithRabbitmq:
 
 if __name__ == "__main__":
     try:
-        with WithMysql() as cur:
-            sql = """
-                SELECT pairs_id FROM `sp_new_pairs` WHERE `platform` = "PancakeV1"
-            """
-            cur.execute(sql)
-            data = cur.fetchall()
-            d = set([item["pairs_id"] for item in data ]) 
-            b = set(np.array( list( range(148617) ),dtype=np.int32 ))
-            setData = np.array( list(b-d),dtype=int )
-            print( setData )
+        with WithRabbitmq() as rabbit:
+            with WithMysql() as cur:
+                sql = """
+                    SELECT pairs_id FROM `sp_new_pairs` WHERE `platform` = "PancakeV1"
+                """
+                cur.execute(sql)
+                data = cur.fetchall()
+                d = set([item["pairs_id"] for item in data ]) 
+                b = set(np.array( list( range(148617) ),dtype=np.int32 ))
+                setData = np.array( list(b-d),dtype=int )
+                exchange_name = 'amq.topic'
+                keyword = "PancakePairsEvents"
+                queue_name = '{keyword}_queue'.format(keyword=keyword)
+                result = rabbit.queue_declare(queue_name, exclusive=False,durable=True,passive=False,auto_delete=False)
+                rabbit.queue_bind( exchange=exchange_name, routing_key=keyword, queue=queue_name  )
+                print( setData )
+                for item in setData:
+                    rabbit.basic_publish(exchange=exchange_name, routing_key=keyword,body= json.dumps({
+                        "platform":"PancakeV1",
+                        "pairsId":int(item),
+                        "contract": "0xBCfCcbde45cE874adCB698cC183deBcF17952812",
+                    }) )
+                print("success")
     except Exception as e:
         print( e )
         traceback.format_exc()
