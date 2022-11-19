@@ -77,7 +77,7 @@ if __name__ == "__main__":
                 cur.execute(sql)
                 data = cur.fetchall()
                 d = set([item["pairs_id"] for item in data ]) 
-                b = set(np.array( list( range(148621) ),dtype=np.int32 ))
+                b = set(np.array( list( range(148631) ),dtype=np.int32 ))
                 setData = np.array( list(b-d),dtype=int )
                 exchange_name = 'amq.topic'
                 keyword = "PancakePairsEvents"
