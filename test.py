@@ -72,12 +72,12 @@ if __name__ == "__main__":
         with WithRabbitmq() as rabbit:
             with WithMysql() as cur:
                 sql = """
-                    SELECT pairs_id FROM `sp_new_pairs` WHERE `platform` = "PancakeV1"
+                    SELECT pairs_id FROM `sp_new_pairs` WHERE `platform` = "PancakeV2"
                 """
                 cur.execute(sql)
                 data = cur.fetchall()
                 d = set([item["pairs_id"] for item in data ]) 
-                b = set(np.array( list( range(148631) ),dtype=np.int32 ))
+                b = set(np.array( list( range(1177274) ),dtype=np.int32 ))
                 setData = np.array( list(b-d),dtype=int )
                 exchange_name = 'amq.topic'
                 keyword = "PancakePairsEvents"
@@ -87,10 +87,10 @@ if __name__ == "__main__":
                 print( setData )
                 for item in setData:
                     rabbit.basic_publish(exchange=exchange_name, routing_key=keyword,body= json.dumps({
-                        "platform":"PancakeV1",
+                        "platform":"PancakeV2",
                         "pairsId":int(item),
-                        #"contract": "0xca143ce32fe78f1f7019d7d551a6402fc5350c73",
-                        "contract": "0xBCfCcbde45cE874adCB698cC183deBcF17952812"
+                        "contract": "0xca143ce32fe78f1f7019d7d551a6402fc5350c73",
+                        #"contract": "0xBCfCcbde45cE874adCB698cC183deBcF17952812"
                     }) )
                 print("success")
     except Exception as e:
