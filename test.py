@@ -72,7 +72,7 @@ if __name__ == "__main__":
         with WithRabbitmq() as rabbit:
             with WithMysql() as cur:
                 sql = """
-                    SELECT pairs_id FROM `sp_new_pairs` WHERE `platform` = "PancakeV1"
+                    SELECT pairs_id FROM `sp_new_pairs` WHERE `platform` = "PancakeV2"
                 """
                 cur.execute(sql)
                 data = cur.fetchall()
