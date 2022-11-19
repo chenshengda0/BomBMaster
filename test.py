@@ -89,8 +89,8 @@ if __name__ == "__main__":
                     rabbit.basic_publish(exchange=exchange_name, routing_key=keyword,body= json.dumps({
                         "platform":"PancakeV1",
                         "pairsId":int(item),
-                        "contract": "0xca143ce32fe78f1f7019d7d551a6402fc5350c73",
-                        #"contract": 0xBCfCcbde45cE874adCB698cC183deBcF17952812
+                        #"contract": "0xca143ce32fe78f1f7019d7d551a6402fc5350c73",
+                        "contract": "0xBCfCcbde45cE874adCB698cC183deBcF17952812"
                     }) )
                 print("success")
     except Exception as e:
